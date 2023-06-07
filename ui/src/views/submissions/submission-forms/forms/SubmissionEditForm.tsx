@@ -519,7 +519,7 @@ class SubmissionEditForm extends React.Component<Props, SubmissionEditFormState>
       title: `Edit ${name} Submission`,
       routes: [
         {
-          path: `/${this.state.submissionType}`,
+          path: `/${this.state.submissionType}#${this.id}`,
           breadcrumbName: `${name} Submissions`
         },
         {

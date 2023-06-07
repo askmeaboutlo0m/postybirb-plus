@@ -167,6 +167,14 @@ export class EditableSubmissionListItem extends React.Component<ListItemProps, L
     }
     return null;
   }
+
+  scrollTo = (elem: HTMLElement | null): void => {
+    // eslint-disable-next-line no-restricted-globals
+    if (elem && location.hash.includes(`#${this.props.item.submission._id}`)) {
+      elem.scrollIntoView();
+    }
+  };
+
   render() {
     const { item } = this.props;
     const problems: Problems = item.problems;
@@ -247,7 +255,7 @@ export class EditableSubmissionListItem extends React.Component<ListItemProps, L
             >
               <List.Item.Meta
                 avatar={
-                  <div>
+                  <div ref={this.scrollTo}>
                     {item.submission.type === SubmissionType.FILE ? (
                       <div className="cursor-zoom-in" onClick={this.showPreview.bind(this)}>
                         <Avatar
