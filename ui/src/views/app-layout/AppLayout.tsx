@@ -37,6 +37,8 @@ import {
   message
 } from 'antd';
 import ErrorBoundary from '../../components/ErrorBoundary';
+import Title from 'antd/lib/typography/Title';
+import Paragraph from 'antd/lib/typography/Paragraph';
 
 const { Content, Sider } = Layout;
 
@@ -51,6 +53,7 @@ interface State {
   settingsVisible: boolean;
   tagGroupVisible: boolean;
   tagConverterVisible: boolean;
+  agreementAccepted: boolean;
 }
 
 @inject('uiStore')
@@ -62,7 +65,8 @@ export default class AppLayout extends React.Component<Props, State> {
     descriptionTemplateVisible: false,
     settingsVisible: false,
     tagGroupVisible: false,
-    tagConverterVisible: false
+    tagConverterVisible: false,
+    agreementAccepted: false
   };
 
   private readonly websites = Object.keys(WebsiteRegistry.websites);
@@ -116,16 +120,29 @@ export default class AppLayout extends React.Component<Props, State> {
       <ConfigProvider>
         <Modal
           title="User Agreement"
-          visible={!this.props.uiStore!.state.agreementAccepted}
+          visible={!this.state.agreementAccepted}
           destroyOnClose={true}
           maskClosable={false}
           closable={false}
           cancelText="No"
-          onOk={() => this.props.uiStore!.agreementAccepted()}
+          okText="I accept and won't annoy the official author"
+          onOk={() => this.setState({ agreementAccepted: true })}
           onCancel={window.electron.kill}
         >
           <Tabs>
             <Tabs.TabPane tab="Terms of Use" key="tou">
+              <Title level={2} type="danger">
+                <Icon type="warning" />
+                Unofficial Release
+                <Icon type="warning" />
+              </Title>
+              <Paragraph type="danger">
+                This is an <strong>unofficial</strong> release of PostyBirb.
+              </Paragraph>
+              <Paragraph type="danger">
+                <strong>Do not</strong> report any issues you have with in the official Discord,
+                bugtracker or through any other official channel.
+              </Paragraph>
               <p>
                 By using PostyBirb you agree to the Terms of Service and Rules of the websites that
                 you are posting to.
@@ -154,15 +171,8 @@ export default class AppLayout extends React.Component<Props, State> {
           <Sider collapsible collapsed={state.navCollapsed} onCollapse={this.handleCollapsedChange}>
             <div className="layout-header">
               <Link to="/">
-                <div
-                  className="logo"
-                  style={{
-                    backgroundImage: `url("${process.env.PUBLIC_URL}/assets/icons/minnowicon.png")`
-                  }}
-                >
-                  PostyBirb
-                  <span className="text-xs">{window.appVersion}</span>
-                </div>
+                PostyBirb
+                <span className="text-xs">UNOFFICIAL.1</span>
               </Link>
               <div className="update-container text-center mx-1">
                 <AppUpdate />
@@ -284,21 +294,11 @@ export default class AppLayout extends React.Component<Props, State> {
               </Menu.SubMenu>
 
               <Menu.Item
-                key="discord"
-                onClick={() =>
-                  window.electron.shell.openInBrowser('https://discordapp.com/invite/jK5JQJF')
-                }
-              >
-                <Icon component={DiscordIcon} />
-                <span>Discord</span>
-              </Menu.Item>
-
-              <Menu.Item
                 key="donate"
                 onClick={() => window.electron.shell.openInBrowser('http://ko-fi.com/A81124JD')}
               >
                 <Icon component={KofiIcon} />
-                <span>Donate</span>
+                <span>Donate (official)</span>
               </Menu.Item>
 
               <Menu.Item key="setting" onClick={() => this.setState({ settingsVisible: true })}>
@@ -384,6 +384,14 @@ export default class AppLayout extends React.Component<Props, State> {
 
           <Layout>
             <div className="header container">
+              <div className="text-center mt-3">
+                <Paragraph type="danger" strong={true}>
+                  <Icon type="warning" />
+                  Unofficial release &mdash; do not report issues in the official Discord, the bug
+                  tracker or through any other official channel.
+                  <Icon type="warning" />
+                </Paragraph>
+              </div>
               <AppHeader />
             </div>
             <Content className="container primary-layout-container">
@@ -403,9 +411,6 @@ export default class AppLayout extends React.Component<Props, State> {
                       path="/edit/submission-template/:id"
                       component={SubmissionTemplateEditForm}
                     />
-                    <BackTop
-                      target={() => document.getElementById('primary-container') || window}
-                    />
                     <Prompt
                       when={this.props.uiStore!.state.hasPendingChanges}
                       message="Are you sure you want to navigate? Any unsaved changes will be lost."
@@ -414,6 +419,14 @@ export default class AppLayout extends React.Component<Props, State> {
                 </ErrorBoundary>
               </div>
             </Content>
+            <div className="text-center mt-3">
+              <Paragraph type="danger" strong={true}>
+                <Icon type="warning" />
+                Unofficial release &mdash; do not report issues in the official Discord, the bug
+                tracker or through any other official channel.
+                <Icon type="warning" />
+              </Paragraph>
+            </div>
           </Layout>
         </Layout>
       </ConfigProvider>
