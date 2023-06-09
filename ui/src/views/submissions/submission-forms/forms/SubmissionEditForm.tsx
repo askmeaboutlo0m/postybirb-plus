@@ -134,7 +134,15 @@ class SubmissionEditForm extends React.Component<Props, SubmissionEditFormState>
     ).then(({ data }) => this.setState({ problems: data }));
   }, 1250);
 
-  onSubmit = () => {
+  getCloseUrl(): string {
+    return `/${this.state.submissionType}#${this.id}`;
+  }
+
+  close(): void {
+    this.props.history.push(this.getCloseUrl());
+  }
+
+  onSubmit(close: boolean) {
     return new Promise(resolve => {
       if (this.state.touched || this.scheduleHasChanged()) {
         const submissionFromStore = submissionStore.getSubmission(this.id);
@@ -164,6 +172,9 @@ class SubmissionEditForm extends React.Component<Props, SubmissionEditFormState>
               touched: false
             });
             message.success('Submission was successfully saved.');
+            if (close) {
+              this.close();
+            }
           })
           .catch(() => {
             this.setState({ loading: false });
@@ -172,11 +183,19 @@ class SubmissionEditForm extends React.Component<Props, SubmissionEditFormState>
           .finally(resolve);
       }
     });
+  }
+
+  onClose = () => {
+    if (this.formHasChanges()) {
+      this.onSubmit(true);
+    } else {
+      this.close();
+    }
   };
 
   onPost = async (saveFirst: boolean) => {
     if (saveFirst) {
-      await this.onSubmit();
+      await this.onSubmit(false);
     }
 
     uiStore.setPendingChanges(false);
@@ -519,7 +538,7 @@ class SubmissionEditForm extends React.Component<Props, SubmissionEditFormState>
       title: `Edit ${name} Submission`,
       routes: [
         {
-          path: `/${this.state.submissionType}#${this.id}`,
+          path: this.getCloseUrl(),
           breadcrumbName: `${name} Submissions`
         },
         {
@@ -872,11 +891,19 @@ class SubmissionEditForm extends React.Component<Props, SubmissionEditFormState>
 
             <Button
               className="mr-1"
-              onClick={this.onSubmit}
+              onClick={() => this.onSubmit(false)}
               type="primary"
               disabled={!this.formHasChanges()}
             >
               Save
+            </Button>
+
+            <Button
+              className="mr-1"
+              onClick={this.onClose}
+              type={this.formHasChanges() ? 'primary' : 'default'}
+            >
+              {this.formHasChanges() ? 'Save and Close' : 'Close'}
             </Button>
 
             {isPosting ? (
