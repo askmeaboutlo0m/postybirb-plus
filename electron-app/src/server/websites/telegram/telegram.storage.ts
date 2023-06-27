@@ -24,11 +24,11 @@ export class TelegramStorage {
     return join(BASE_DIRECTORY, 'auth', 'telegram', `${this.name}.json`);
   }
 
-  get(key: string): Promise<any> {
+  getItem(key: string): Promise<string|null> {
     return this.storage[key];
   }
 
-  set(key: string, value: any): Promise<any> {
+  setItem(key: string, value: string): Promise<void> {
     this.storage[key] = value;
     return writeJSON(this.getFileName(), this.storage, { spaces: 1 }).then(() => this.storage[key]);
   }
