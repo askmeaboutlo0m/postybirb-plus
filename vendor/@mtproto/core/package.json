@@ -1,0 +1,189 @@
+{
+  "name": "@mtproto/core",
+  "version": "5.3.0",
+  "description": "Telegram API JS (MTProto) client library for browser and nodejs",
+  "keywords": [
+    "telegram",
+    "telegram-api",
+    "mtproto",
+    "tdlib",
+    "browser",
+    "node",
+    "nodejs",
+    "client",
+    "library",
+    "lib",
+    "api",
+    "messenger",
+    "telegram-web",
+    "telegram-online"
+  ],
+  "homepage": "https://github.com/alik0211/mtproto-core#readme",
+  "bugs": {
+    "url": "https://github.com/alik0211/mtproto-core/issues"
+  },
+  "author": "Ali Gasymov <alik0211alik@gmail.com> (https://gasymov.com/)",
+  "repository": "github:alik0211/mtproto-core",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "src/**/*.js"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "types": "./index.d.ts",
+  "browser": {
+    "./src/transport/index.js": "./src/transport/index.browser.js",
+    "./src/storage/local/index.js": "./src/storage/local/index.browser.js",
+    "./src/utils/crypto/sha1/index.js": "./src/utils/crypto/sha1/index.browser.js",
+    "./src/utils/crypto/sha256/index.js": "./src/utils/crypto/sha256/index.browser.js",
+    "./src/utils/crypto/pbkdf2/index.js": "./src/utils/crypto/pbkdf2/index.browser.js",
+    "./src/utils/common/random/index.js": "./src/utils/common/random/index.browser.js"
+  },
+  "license": "GPL-3.0",
+  "dependencies": {
+    "aes-js": "3.1.2",
+    "big-integer": "1.6.48",
+    "env-paths": "2.2.0",
+    "events": "3.2.0",
+    "leemon": "6.2.0",
+    "lodash.debounce": "4.0.8",
+    "node-localstorage": "2.1.6",
+    "pako": "2.0.2"
+  },
+  "type": "module",
+  "main": "index.cjs",
+  "module": "index.js",
+  "react-native": "index.js",
+  "exports": {
+    ".": {
+      "require": "./index.cjs",
+      "import": "./index.js",
+      "types": "./index.d.ts"
+    },
+    "./package.json": "./package.json",
+    "./src/package.json": "./src/package.json",
+    "./src": {
+      "require": "./src/index.cjs",
+      "import": "./src/index.js"
+    },
+    "./src/rpc/package.json": "./src/rpc/package.json",
+    "./src/rpc": {
+      "require": "./src/rpc/index.cjs",
+      "import": "./src/rpc/index.js"
+    },
+    "./src/storage/package.json": "./src/storage/package.json",
+    "./src/storage": {
+      "require": "./src/storage/index.cjs",
+      "import": "./src/storage/index.js"
+    },
+    "./src/transport/package.json": "./src/transport/package.json",
+    "./src/transport": {
+      "browser": "./src/transport/index.browser.js",
+      "require": "./src/transport/index.cjs",
+      "import": "./src/transport/index.js"
+    },
+    "./src/storage/local/package.json": "./src/storage/local/package.json",
+    "./src/storage/local": {
+      "browser": "./src/storage/local/index.browser.js",
+      "require": "./src/storage/local/index.cjs",
+      "import": "./src/storage/local/index.js"
+    },
+    "./src/storage/temp/package.json": "./src/storage/temp/package.json",
+    "./src/storage/temp": {
+      "require": "./src/storage/temp/index.cjs",
+      "import": "./src/storage/temp/index.js"
+    },
+    "./src/tl/builder/package.json": "./src/tl/builder/package.json",
+    "./src/tl/builder": {
+      "require": "./src/tl/builder/index.cjs",
+      "import": "./src/tl/builder/index.js"
+    },
+    "./src/tl/counter/package.json": "./src/tl/counter/package.json",
+    "./src/tl/counter": {
+      "require": "./src/tl/counter/index.cjs",
+      "import": "./src/tl/counter/index.js"
+    },
+    "./src/tl/deserializer/package.json": "./src/tl/deserializer/package.json",
+    "./src/tl/deserializer": {
+      "require": "./src/tl/deserializer/index.cjs",
+      "import": "./src/tl/deserializer/index.js"
+    },
+    "./src/tl/parser/package.json": "./src/tl/parser/package.json",
+    "./src/tl/parser": {
+      "require": "./src/tl/parser/index.cjs",
+      "import": "./src/tl/parser/index.js"
+    },
+    "./src/tl/serializer/package.json": "./src/tl/serializer/package.json",
+    "./src/tl/serializer": {
+      "require": "./src/tl/serializer/index.cjs",
+      "import": "./src/tl/serializer/index.js"
+    },
+    "./src/transport/obfuscated/package.json": "./src/transport/obfuscated/package.json",
+    "./src/transport/obfuscated": {
+      "require": "./src/transport/obfuscated/index.cjs",
+      "import": "./src/transport/obfuscated/index.js"
+    },
+    "./src/transport/socket/package.json": "./src/transport/socket/package.json",
+    "./src/transport/socket": {
+      "require": "./src/transport/socket/index.cjs",
+      "import": "./src/transport/socket/index.js"
+    },
+    "./src/transport/tcp/package.json": "./src/transport/tcp/package.json",
+    "./src/transport/tcp": {
+      "require": "./src/transport/tcp/index.cjs",
+      "import": "./src/transport/tcp/index.js"
+    },
+    "./src/utils/common/package.json": "./src/utils/common/package.json",
+    "./src/utils/common": {
+      "require": "./src/utils/common/index.cjs",
+      "import": "./src/utils/common/index.js"
+    },
+    "./src/utils/crypto/package.json": "./src/utils/crypto/package.json",
+    "./src/utils/crypto": {
+      "require": "./src/utils/crypto/index.cjs",
+      "import": "./src/utils/crypto/index.js"
+    },
+    "./src/utils/pq/package.json": "./src/utils/pq/package.json",
+    "./src/utils/pq": {
+      "require": "./src/utils/pq/index.cjs",
+      "import": "./src/utils/pq/index.js"
+    },
+    "./src/utils/rsa/package.json": "./src/utils/rsa/package.json",
+    "./src/utils/rsa": {
+      "require": "./src/utils/rsa/index.cjs",
+      "import": "./src/utils/rsa/index.js"
+    },
+    "./src/utils/common/logger/package.json": "./src/utils/common/logger/package.json",
+    "./src/utils/common/logger": {
+      "require": "./src/utils/common/logger/index.cjs",
+      "import": "./src/utils/common/logger/index.js"
+    },
+    "./src/utils/common/random/package.json": "./src/utils/common/random/package.json",
+    "./src/utils/common/random": {
+      "browser": "./src/utils/common/random/index.browser.js",
+      "require": "./src/utils/common/random/index.cjs",
+      "import": "./src/utils/common/random/index.js"
+    },
+    "./src/utils/crypto/pbkdf2/package.json": "./src/utils/crypto/pbkdf2/package.json",
+    "./src/utils/crypto/pbkdf2": {
+      "browser": "./src/utils/crypto/pbkdf2/index.browser.js",
+      "require": "./src/utils/crypto/pbkdf2/index.cjs",
+      "import": "./src/utils/crypto/pbkdf2/index.js"
+    },
+    "./src/utils/crypto/sha1/package.json": "./src/utils/crypto/sha1/package.json",
+    "./src/utils/crypto/sha1": {
+      "browser": "./src/utils/crypto/sha1/index.browser.js",
+      "require": "./src/utils/crypto/sha1/index.cjs",
+      "import": "./src/utils/crypto/sha1/index.js"
+    },
+    "./src/utils/crypto/sha256/package.json": "./src/utils/crypto/sha256/package.json",
+    "./src/utils/crypto/sha256": {
+      "browser": "./src/utils/crypto/sha256/index.browser.js",
+      "require": "./src/utils/crypto/sha256/index.cjs",
+      "import": "./src/utils/crypto/sha256/index.js"
+    },
+    "./index.d.ts": "./index.d.ts"
+  }
+}
