@@ -344,7 +344,7 @@ const builderMap = {
   },
   'inputMediaUploadedPhoto': function(params) {
     this.int32(505969924);
-    const flags = (this.has(params.stickers) << 0) | (this.has(params.ttl_seconds) << 1);
+    const flags = (this.has(params.stickers) << 0) | (this.has(params.ttl_seconds) << 1) | (this.has(params.spoiler) << 2);
     this.int32(flags);
     this.predicate(params.file);
     this.flagVector(this.predicate, params.stickers);
@@ -352,7 +352,7 @@ const builderMap = {
   },
   'inputMediaPhoto': function(params) {
     this.int32(-1279654347);
-    const flags = (this.has(params.ttl_seconds) << 0);
+    const flags = (this.has(params.ttl_seconds) << 0) | (this.has(params.spoiler) << 1);
     this.int32(flags);
     this.predicate(params.id);
     this.flag(this.int, params.ttl_seconds);
@@ -1306,7 +1306,7 @@ const builderMap = {
   },
   'inputMediaUploadedDocument': function(params) {
     this.int32(1530447553);
-    const flags = (this.has(params.nosound_video) << 3) | (this.has(params.force_file) << 4) | (this.has(params.thumb) << 2) | (this.has(params.stickers) << 0) | (this.has(params.ttl_seconds) << 1);
+    const flags = (this.has(params.nosound_video) << 3) | (this.has(params.force_file) << 4) | (this.has(params.thumb) << 2) | (this.has(params.stickers) << 0) | (this.has(params.ttl_seconds) << 1) | (this.has(params.spoiler) << 5);
     this.int32(flags);
     this.predicate(params.file);
     this.flag(this.predicate, params.thumb);
@@ -1317,7 +1317,7 @@ const builderMap = {
   },
   'inputMediaDocument': function(params) {
     this.int32(598418386);
-    const flags = (this.has(params.ttl_seconds) << 0);
+    const flags = (this.has(params.ttl_seconds) << 0) | (this.has(params.spoiler) << 2);
     this.int32(flags);
     this.predicate(params.id);
     this.flag(this.int, params.ttl_seconds);
@@ -2651,14 +2651,14 @@ const builderMap = {
   },
   'inputMediaPhotoExternal': function(params) {
     this.int32(-440664550);
-    const flags = (this.has(params.ttl_seconds) << 0);
+    const flags = (this.has(params.ttl_seconds) << 0) | (this.has(params.spoiler) << 1);
     this.int32(flags);
     this.string(params.url);
     this.flag(this.int, params.ttl_seconds);
   },
   'inputMediaDocumentExternal': function(params) {
     this.int32(-78455655);
-    const flags = (this.has(params.ttl_seconds) << 0);
+    const flags = (this.has(params.ttl_seconds) << 0) | (this.has(params.spoiler) << 1);
     this.int32(flags);
     this.string(params.url);
     this.flag(this.int, params.ttl_seconds);
